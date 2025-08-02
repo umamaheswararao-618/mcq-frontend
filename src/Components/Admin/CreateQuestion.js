@@ -16,7 +16,7 @@ function CreateQuestion() {
     const handleSubmit =async (e) => {
     e.preventDefault();
     try{
-    const response=await axiosurl.post("/create", formdata)
+    const response=await axiosurl.post("/Questions/create", formdata)
         if (response.status === 200) {
             alert("✅ Question saved successfully");
             setFormData({

@@ -19,7 +19,7 @@ import { useAuth } from "./AuthContext";
         setId(user?.id);}
 const  fetch=async()=>{
         try{
-        const response= await axiosurl.get(`/Result/${id}/${language}`)
+        const response= await axiosurl.get(`/Questions/Result/${id}/${language}`)
         setScore(response.data)
         }
         catch(error)

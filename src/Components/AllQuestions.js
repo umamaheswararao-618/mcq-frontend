@@ -7,7 +7,7 @@ function AllQuestions() {
     const [questions, setQuestions] = React.useState([]);
 
     React.useEffect(() => {
-        axiosurl.get("/AllQuestions")
+        axiosurl.get("/Questions/AllQuestions")
             .then(response => setQuestions(response.data))
             .catch(error => console.error("Error fetching questions:", error));
     }, []);

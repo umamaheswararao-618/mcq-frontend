@@ -49,7 +49,7 @@ function SignUp(){
         if(handlePassword(confirmPassword)&& emailregex.test(payload.email) && passwordregex.test(payload.passWord)) {
         if (payload.roll === "user" || payload.roll === "admin") {
                 try{
-                const response=await axiosurl.post(`/User/SignUp`, payload)
+                const response=await axiosurl.post(`/Questions/User/SignUp`, payload)
                     .then(response => {
                         if (response.status === 200) {
                             alert(`✅ Sign Up successful ${response.data}`);

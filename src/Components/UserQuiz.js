@@ -29,7 +29,7 @@ function UserQuiz() {
     
 
     useEffect(() => {
-        axiosurl.get(`/User/userquiz/${type}`)
+        axiosurl.get(`/Questions/User/userquiz/${type}`)
             .then(response => {
                 console.log("Received Data:", response.data);
                 setQuizData(response.data);
@@ -60,7 +60,7 @@ function UserQuiz() {
             type: type
         }));
 
-        axiosurl.post(`/User/SubmitQuiz`, payload)
+        axiosurl.post(`/Questions/User/SubmitQuiz`, payload)
             .then(response => {
                 alert("Quiz submitted successfully!");
             })

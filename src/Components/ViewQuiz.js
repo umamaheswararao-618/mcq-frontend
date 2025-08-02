@@ -13,7 +13,7 @@ function ViewQuiz() {
     }
 }, [user]);
     useEffect(() => {
-        axiosurl.get(`/viewQuiz/${id}`)
+        axiosurl.get(`/Questions/viewQuiz/${id}`)
             .then(response => {
                 setQuizData(response.data);
             })
