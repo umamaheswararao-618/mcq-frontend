@@ -5,7 +5,7 @@
     align-items: center;
     background-color: antiquewhite;
     font-family: sans-serif;
-    width: 80%;
+    flex:1;
 }
 .UserQuiz form{
     display: flex;
