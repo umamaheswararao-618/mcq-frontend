@@ -61,7 +61,7 @@ const  fetch=async(payload)=>{
   });
 }
 
-    const handleQuiz = (e) => {
+    const handleQuiz = async(e) => {
         e.preventDefault();
 
         const payload = quizData.map((quiz) => ({
@@ -72,9 +72,9 @@ const  fetch=async(payload)=>{
             type: type
         }));
 
-        axiosurl.post(`/Questions/User/SubmitQuiz`, payload)
+       await axiosurl.post(`/Questions/User/SubmitQuiz`, payload)
             .then(response => {
-                alert("Quiz submitted successfully!");
+                alert(`Quiz submitted successfully!,${payload}`);
               fetch(payload);
             })
             .catch(error => console.error("Error submitting quiz:", error));
