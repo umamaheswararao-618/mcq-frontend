@@ -74,7 +74,7 @@ const  fetch=async(payload)=>{
 
        await axiosurl.post(`/Questions/User/SubmitQuiz`, payload)
             .then(response => {
-                alert(`Quiz submitted successfully!,${payload}`);
+                alert(`Quiz submitted successfully!,${JSON.stringify(payload)}`);
               fetch(payload);
             })
             .catch(error => console.error("Error submitting quiz:", error));
