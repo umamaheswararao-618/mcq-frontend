@@ -14,18 +14,7 @@ import { useAuth } from "./AuthContext";
             setId(user.id);
         },[location.language]
     )*/
-   const setval= ()=>{
-    setLanguage("javascript");
-        setId(user?.id);}
-const  fetch=async()=>{
-        try{
-        const response= await axiosurl.get(`/Questions/Result/${id}/${language}`)
-        setScore(response.data)
-        }
-        catch(error)
-        {
-            alert(`${error}`)
-        }}
+   
     useEffect(() => {
         
         fetch();

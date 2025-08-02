@@ -43,6 +43,18 @@ function UserQuiz() {
             [questionId]: selectedOption
         }));
     };
+const  fetch=async(payload)=>{
+        try{
+        const response= await axiosurl.post(`/Questions/Result/${id}/${type}`,payload)
+        setScore(response.data)
+        alert(`Your  ${type} Test Score Out Off ${score}/100`)
+        }
+        catch(error)
+        {
+            alert(`${error}`)
+        }
+        
+    }
    function result() {
   navigate("/result", {
     state: { language: type, score: score }
@@ -63,6 +75,7 @@ function UserQuiz() {
         axiosurl.post(`/Questions/User/SubmitQuiz`, payload)
             .then(response => {
                 alert("Quiz submitted successfully!");
+              fetch(payload);
             })
             .catch(error => console.error("Error submitting quiz:", error));
             
