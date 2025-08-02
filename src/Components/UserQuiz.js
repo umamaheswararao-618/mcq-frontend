@@ -44,11 +44,12 @@ function UserQuiz() {
         }));
     };
 
-    const fetchScore = async (payload) => {
+    const fetchScore = async (payload1) => {
+        e.preventDefault();
         try {
-            const response = await axiosurl.post(`/Questions/Result/${id}/${type}`, payload);
+            const response = await axiosurl.post(`/Questions/Result/${id}/${type}`, payload1);
             setScore(response.data);
-            alert(`Your ${type} Test Score: ${response.data}/100`);
+            alert(`Your ${type} Test Score: ${response.data}/100 ${JSON.stringify(payload1)}`);
         } catch (error) {
             alert(`Error fetching score: ${error}`);
         }
