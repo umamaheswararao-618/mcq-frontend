@@ -1,28 +1,30 @@
 import React from 'react';
 import './App.css';
+
 import Header from './Header';
 import Paths from './Components/Paths';
 import Sidebar from './Components/Sidebar';
 import Footer from './Footer';
+import { AuthProvider } from './Components/AuthContext';
+
 function App() {
   return (
-    <div className="App ">
-      <div className="Header">
+    <AuthProvider>
+      <div className="App">
         <Header />
-      </div>
-      <div className="Content-App">
-        <div className="col-2 Sidebar">
-          <Sidebar />
+        <div className="Content-App container-fluid">
+          <div className="row h-100">
+            <div className="col-md-3 Sidebar">
+              <Sidebar />
+            </div>
+            <div className="col-md-9 Main-Content">
+              <Paths />
+            </div>
+          </div>
         </div>
-        <div className="col-10 Main-Content">
-          <Paths />
-        </div>
-
+        <Footer />
       </div>
-      <div className="Footer">
-        <Footer />  
-      </div>
-    </div>
+    </AuthProvider>
   );
 }
 
