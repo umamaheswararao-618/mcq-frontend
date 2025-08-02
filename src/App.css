@@ -32,3 +32,17 @@
 .Main-Content {
   padding: 1.5rem;
 }
+@media (max-width: 767.98px) {
+  .App {
+    height: auto;
+    overflow: visible;
+  }
+  .Content-App {
+    overflow: visible;
+  }
+  .Sidebar,
+  .Main-Content {
+    height: auto;
+    overflow-y: visible;
+  }
+}
