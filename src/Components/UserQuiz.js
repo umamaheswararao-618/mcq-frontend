@@ -44,8 +44,8 @@ function UserQuiz() {
         }));
     };
 
-    const fetchScore = async (payload1,e) => {
-        e.preventDefault();
+    const fetchScore = async (payload1) => {
+        
         try {
             const response = await axiosurl.post(`/Questions/Result/${id}/${type}`, payload1);
             setScore(response.data);
