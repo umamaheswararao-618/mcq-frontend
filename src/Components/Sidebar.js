@@ -7,7 +7,7 @@ function Sidebar() {
 
     return (
         <div className="d-flex flex-column p-3 bg-light" >
-            <h2 className="text-center mb-4">Sidebar</h2>
+            <h2 className=" mb-4">Sidebar</h2>
             <aside>
                 <ul className="nav nav-pills flex-column">
                     <li className="nav-item">
