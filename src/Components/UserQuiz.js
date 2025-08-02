@@ -1,40 +1,40 @@
-//import axios from "axios";
 import React, { useState, useEffect } from "react";
 import './UserQuiz.css';
 import { useAuth } from "./AuthContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axiosurl from "../AxiosPath";
-import { useNavigate } from "react-router-dom";
+
 function UserQuiz() {
     const navigate = useNavigate();
     const [quizData, setQuizData] = useState([]);
     const [answers, setAnswers] = useState({});
     const [id, setId] = useState(0);
-    const {user} =useAuth();
+    const { user } = useAuth();
     const location = useLocation();
-    const [score,setScore]=useState(0);
-    const [type,setType]=useState("");// Default to "java" if no state is provided
+    const [score, setScore] = useState(0);
+    const [type, setType] = useState("");
+
     useEffect(() => {
-        if(user?.id) {
+        if (user?.id) {
             setId(user.id);
-            
         }
     }, [user]);
+
     useEffect(() => {
-        if (!!location.state.language) {
+        if (location.state?.language) {
             setType(location.state.language);
-        }   
-    } , [location.state]);
-
-    
+        }
+    }, [location.state]);
 
     useEffect(() => {
-        axiosurl.get(`/Questions/User/userquiz/${type}`)
-            .then(response => {
-                console.log("Received Data:", response.data);
-                setQuizData(response.data);
-            })
-            .catch(error => console.error("Error fetching quizzes:", error));
+        if (type) {
+            axiosurl.get(`/Questions/User/userquiz/${type}`)
+                .then(response => {
+                    console.log("Received Data:", response.data);
+                    setQuizData(response.data);
+                })
+                .catch(error => console.error("Error fetching quizzes:", error));
+        }
     }, [type]);
 
     const handleChange = (questionId, selectedOption) => {
@@ -43,26 +43,24 @@ function UserQuiz() {
             [questionId]: selectedOption
         }));
     };
-const  fetch=async(payload)=>{
-        try{
-        const response= await axiosurl.post(`/Questions/Result/${id}/${type}`,payload)
-        setScore(response.data)
-        alert(`Your  ${type} Test Score Out Off ${score}/100`)
-        }
-        catch(error)
-        {
-            alert(`${error}`)
-        }
-        
-    }
-   function result() {
-  navigate("/result", {
-    state: { language: type, score: score }
-  });
-}
 
-    const handleQuiz = async(e) => {
+    const fetchScore = async (payload) => {
+        try {
+            const response = await axiosurl.post(`/Questions/Result/${id}/${type}`, payload);
+            setScore(response.data);
+            alert(`Your ${type} Test Score: ${response.data}/100`);
+        } catch (error) {
+            alert(`Error fetching score: ${error}`);
+        }
+    };
+
+    const handleQuiz = async (e) => {
         e.preventDefault();
+
+        if (!id || !type) {
+            alert("User ID or quiz type missing!");
+            return;
+        }
 
         const payload = quizData.map((quiz) => ({
             user: { id: id },
@@ -72,19 +70,13 @@ const  fetch=async(payload)=>{
             type: type
         }));
 
-       await axiosurl.post(`/Questions/User/SubmitQuiz`, payload)
-            .then(response => {
-                alert(`Quiz submitted successfully!,${JSON.stringify(payload)}`);
-              fetch(payload);
-            })
-            .catch(error => console.error("Error submitting quiz:", error));
-            
-            /*quizData.map((quiz)=>{
-                if(quiz.correctanswer===answers[quiz.id])
-                    setScore(score+1);
-            })
-            result();*/
-            
+        try {
+            await axiosurl.post(`/Questions/User/SubmitQuiz`, payload);
+            alert(`Quiz submitted successfully!`);
+            fetchScore(payload);
+        } catch (error) {
+            console.error("Error submitting quiz:", error);
+        }
     };
 
     return (
@@ -98,25 +90,15 @@ const  fetch=async(payload)=>{
                         {quizData.map((quiz, index) => (
                             <li key={quiz.id}>
                                 <div className="question">
-                                    <h3><pre>{index+1} {quiz.questiontext}</pre></h3> {/* ✅ FIXED */}
+                                    <h3><pre>{index + 1} {quiz.questiontext}</pre></h3>
                                 </div>
                                 <div className="options">
-                                    <label className="flex-label">
-                                        <input type="radio" name={quiz.id} onChange={() => handleChange(quiz.id, quiz.optionA)} />
-                                        <pre>{quiz.optionA}</pre>
-                                    </label>
-                                    <label className="flex-label">
-                                        <input type="radio" name={quiz.id} onChange={() => handleChange(quiz.id, quiz.optionB)} />
-                                        <pre>{quiz.optionB}</pre>
-                                    </label>
-                                    <label className="flex-label">
-                                        <input type="radio" name={quiz.id} onChange={() => handleChange(quiz.id, quiz.optionC)} />
-                                        <pre>{quiz.optionC}</pre>
-                                    </label>
-                                    <label className="flex-label">
-                                        <input type="radio" name={quiz.id} onChange={() => handleChange(quiz.id, quiz.optionD)} />
-                                        <pre>{quiz.optionD}</pre>
-                                    </label>
+                                    {[quiz.optionA, quiz.optionB, quiz.optionC, quiz.optionD].map((option, i) => (
+                                        <label className="flex-label" key={i}>
+                                            <input type="radio" name={quiz.id} onChange={() => handleChange(quiz.id, option)} />
+                                            <pre>{option}</pre>
+                                        </label>
+                                    ))}
                                 </div>
                             </li>
                         ))}
