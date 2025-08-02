@@ -31,8 +31,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
-    padding: 10px;
 }
 .question-list {
     background-color: rgb(190, 190, 93);
