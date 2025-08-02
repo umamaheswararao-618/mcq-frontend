@@ -1,6 +1,5 @@
 import React from "react";
 import './CreateQuestion.css';
-import axios from 'axios';
 import axiosurl from "../../AxiosPath";
 function CreateQuestion() {
 
