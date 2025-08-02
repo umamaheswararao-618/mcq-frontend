@@ -72,7 +72,7 @@ function UserQuiz() {
 
         try {
             await axiosurl.post(`/Questions/User/SubmitQuiz`, payload);
-            alert(`Quiz submitted successfully!`);
+            alert(`Quiz submitted successfully!,${JSON.stringify(payload)}`);
             fetchScore(payload);
         } catch (error) {
             console.error("Error submitting quiz:", error);
