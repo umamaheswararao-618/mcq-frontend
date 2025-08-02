@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-
+import SignUp from './Components/SignUp';
+import Login from './Components/Login';
+import CreateQuestion from './Components/Admin/CreateQuestion';
+import AllQuestions from './Components/AllQuestions';
+import UserQuiz from './Components/UserQuiz';
+import ViewQuiz from './Components/ViewQuiz';
+import Header from './Header';
+import Paths from './Components/Paths';
+import Sidebar from './Components/Sidebar';
+import Footer from './Footer';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App ">
+      <div className="Header">
+        <Header />
+      </div>
+      <div className="Content-App">
+        <div className="col-2 Sidebar">
+          <Sidebar />
+        </div>
+        <div className="col-10 Main-Content">
+          <Paths />
+        </div>
+
+      </div>
+      <div className="Footer">
+        <Footer />  
+      </div>
     </div>
   );
 }

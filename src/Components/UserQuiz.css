@@ -1,0 +1,50 @@
+.UserQuiz{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    font-family: sans-serif;
+}
+.UserQuiz form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+.UserQuiz .quiz-list{
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    min-width:80% ;
+}
+.UserQuiz .header{
+    text-align: center;
+    padding: 10px;
+}
+.quiz-list ul li .question{
+   font-size: 16px;
+   padding: 5px;
+}
+.flex-label{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.flex-label pre,input{
+    font-size: 14px;
+    padding: 10px;
+}
+.UserQuiz .quiz-list ul li{
+    list-style: none;
+
+}
+.UserQuiz button{
+    margin: 10px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
