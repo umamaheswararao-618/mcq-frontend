@@ -15,27 +15,17 @@ const Tech = () => {
   };
 
   // Toggle accept/decline
-  const handleAcceptance = async (userId) => {
+  const handleAcceptance = async (id) => {
     try {
-      const response = await axiosurl.put(`/Questions/User/Accept/${userId}`);
-      alert(response.data);
-      fetchUsers(); // refresh data after update
+      const response = await axiosurl.put(`/Questions/User/Accept/${id}`);
+      alert(response.data); 
+      fetchUsers();
     } catch (error) {
       console.error("Error updating user:", error);
       alert("Failed to update user");
     }
   };
 
-  // Get user email by id
-  const getUserEmail = async (id) => {
-    try {
-      const response = await axiosurl.get(`/Questions/email/${id}`);
-      return response.data;
-    } catch (error) {
-      alert("Invalid Email");
-      return "";
-    }
-  };
 
   useEffect(() => {
     fetchUsers();
@@ -52,7 +42,7 @@ const Tech = () => {
             <label>
               {t.email || "Loading email..."} Accept:{t.accept} Role:{t.roll}
             </label>
-            <button onClick={() => handleAcceptance(t.id)}>
+            <button onClick={handleAcceptance(t.id)}>
               {t.accept === "true" ? "Decline As Admin" : "Accept As Admin"}
             </button>
           </div>
