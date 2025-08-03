@@ -37,6 +37,9 @@ function Sidebar() {
                     <li>
                         <Link to="/result" className="nav-link">Result</Link>
                     </li>
+                    <li>
+                        <Link to="/tech" className="nav-link">Tech</Link>
+                    </li>
                 </ul>
             </aside>
         </div>

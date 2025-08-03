@@ -67,6 +67,11 @@ function Paths()
                         <Home />
                     </ProtectRoute>
                 } />
+                <Route path="/tech" element={
+                    <ProtectRoute>
+                        <Tech />
+                    </ProtectRoute>
+                } />
 
             </Routes>
         
