@@ -12,6 +12,7 @@ import { useAuth } from "./AuthContext";
 import TypesofQuiz from "./TypesofQuiz";
 import Welcome from "./Welcome";
 import Result from "./Result";
+import Tech from "./Tech";
 
 function Paths()
 {
