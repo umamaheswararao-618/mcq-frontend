@@ -50,9 +50,9 @@ const Tech = () => {
         {techData.map((t, index) => (
           <div className="Users" key={index}>
             <label>
-              {t.user?.email || "Loading email..."} Accept: {t.accept}
+              {t.email || "Loading email..."} Accept:{t.accept} Role:{t.roll}
             </label>
-            <button onClick={() => handleAcceptance(t.user.id)}>
+            <button onClick={() => handleAcceptance(t.id)}>
               {t.accept === "true" ? "Decline As Admin" : "Accept As Admin"}
             </button>
           </div>
