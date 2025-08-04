@@ -1,32 +1,36 @@
-import { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom";
+import { useState } from "react";
 import axiosurl from "../AxiosPath";
 import { useAuth } from "./AuthContext";
-  function Result(){
-    const [language,setLanguage]=useState("javascript");
-    const [score,setScore]=useState();
-    const [id,setId]=useState(9);
-    const {user} = useAuth();
-    const location=useLocation();
-    /*useEffect(
-        ()=>{
-            setLanguage(location.state.language);
-            setId(user.id);
-        },[location.language]
-    )*/
-   
-    useEffect(() => {
-        
-        fetch();
-    }, [language]);
-    return (
-        <div className="Result">
-            <div className="h2">
-                <h2>{language}</h2>
-            </div>
+
+function Result() {
+  const [scores, setScores] = useState({}); // Store scores for each language
+  const { user } = useAuth();
+
+  const fetchScore = async (lan) => {
+    try {
+      const response = await axiosurl.get(`/Questions/subjectresults/${user?.id}/${lan}`);
+      setScores((prev) => ({ ...prev, [lan]: response.data })); // update score for that language
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  return (
+    <div className="Result">
+      <h1>Results</h1>
+      {["java", "javascript", "python"].map((language, index) => (
+        <div className="Button" key={index}>
+          <button onClick={() => fetchScore(language)}>{language}</button>
+
+          {scores[language] !== undefined && (
             <div className="Score">
-                <h3>{score}</h3>
+              <h3>Score: {scores[language]}</h3>
             </div>
+          )}
         </div>
-    )
-}export default Result;
+      ))}
+    </div>
+  );
+}
+
+export default Result;
