@@ -63,7 +63,11 @@ function Login() {
                     setMessage("❌ User not found");
                 } else if (error.response.status === 401) {
                     setMessage("❌ Invalid credentials");
-                } else {
+                }
+                else if (error.response && error.response.status === 409) {
+                    setMessage("❌ Need Access As admin");
+                }
+                 else {
                     setMessage("❌ Something went wrong");
                 }
             } else {
