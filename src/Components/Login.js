@@ -42,7 +42,7 @@ function Login() {
             try{
             const response = await axiosurl.post("/Questions/User/LogIn", {
     email,
-    pass_word: password,
+    password:password,
     roll
 });
 
