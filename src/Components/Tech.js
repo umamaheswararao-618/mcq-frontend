@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosurl from "../AxiosPath";
-
+import "./Tech.css"
 const Tech = () => {
   const [techData, setTechData] = useState([]);
 
@@ -29,7 +29,7 @@ const Tech = () => {
   }, []);
 
   return (
-    <>
+    <div className="main">
       <div className="He">
         <h2>Hello Tech, Approve or Decline Request</h2>
       </div>
@@ -38,9 +38,9 @@ const Tech = () => {
           techData.map((t, index) => (
             <div className="Users" key={index}>
               <label>
-                {t.email || "No Email"} | Accept: {t.accept} | Role: {t.roll}
+                {t.email}Accept: {t.accept}  Role: {t.roll}
               </label>
-              <button onClick={() => handleAcceptance(t.id)}>
+              <button onClick={() => handleAcceptance(t.id)}style={{ color: t.accept === "true" ? "green" : "red" }}>
                 {t.accept === "true" ? "Decline As Admin" : "Accept As Admin"}
               </button>
             </div>
@@ -49,7 +49,7 @@ const Tech = () => {
           <p>No users found.</p>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -68,11 +68,12 @@ function Paths()
                         <Home />
                     </ProtectRoute>
                 } />
+                {user?.email==="gumamaheswararao97@gmail.com"&&(
                 <Route path="/tech" element={
                     <ProtectRoute>
                         <Tech />
                     </ProtectRoute>
-                } />
+                } />)}
 
             </Routes>
         
