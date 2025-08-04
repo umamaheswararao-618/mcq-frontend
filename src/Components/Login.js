@@ -41,10 +41,11 @@ function Login() {
              const roll= role;
             try{
             const response = await axiosurl.post("/Questions/User/LogIn", {
-                email,
-                password,
-               roll
-            })
+    email,
+    pass_word: password,
+    roll
+});
+
         if (response.status === 200) {
                 if (true) {
                     const id=parseInt(response.data);
