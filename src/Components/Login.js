@@ -38,27 +38,25 @@ function Login() {
         e.preventDefault();
         if(role==="user" || role==="admin"){
             
-             const roll= role;
+             
             try{
             const response = await axiosurl.post("/Questions/User/LogIn", {
     email,
     password:password,
-    roll
-});
+    roll:role
+})
 
         if (response.status === 200) {
-                if (true) {
+                
                     const id=parseInt(response.data);
-                    setMessage("✅ Login successful");
-                    login({ email, roll,id });
-                    alert(message);
+                    login({ email, role,id });
+                    alert("✅ Login successful");
                     navigate("/home");
                     
-                } 
+            
             }
-            alert(message);
         }
-            catch(error){
+        catch(error){
                  if (error.response) {
                 if (error.response.status === 404) {
                     setMessage("❌ User not found");

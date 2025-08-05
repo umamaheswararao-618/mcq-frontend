@@ -31,10 +31,11 @@ function ViewQuiz() {
                         <li key={index}>
                             <h3><pre>{quiz.question.questiontext}</pre></h3>
                             <div>
-                                <label><input type="radio" name={`q${index}`} /> {quiz.question.optionA}</label><br />
-                                <label><input type="radio" name={`q${index}`} /> {quiz.question.optionB}</label><br />
-                                <label><input type="radio" name={`q${index}`} /> {quiz.question.optionC}</label><br />
-                                <label><input type="radio" name={`q${index}`} /> {quiz.question.optionD}</label><br />
+                                <label><input type="radio" checked={quiz.marked === quiz.question.optionA} readOnly name={`q${index}`} /> {quiz.question.optionA}</label><br />
+                                <label><input type="radio" checked={quiz.marked === quiz.question.optionB} readOnly name={`q${index}`} /> {quiz.question.optionB}</label><br />
+                                <label><input type="radio" checked={quiz.marked === quiz.question.optionC} readOnly name={`q${index}`} /> {quiz.question.optionC}</label><br />
+                                <label><input type="radio" checked={quiz.marked === quiz.question.optionD} readOnly name={`q${index}`} /> {quiz.question.optionD}</label><br />
+                                <label>Correct Answer :{quiz.question.correctAnswer}</label>
                             </div>
                         </li>
                     ))}

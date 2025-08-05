@@ -30,7 +30,6 @@ function UserQuiz() {
         if (type) {
             axiosurl.get(`/Questions/User/userquiz/${type}`)
                 .then(response => {
-                    console.log("Received Data:", response.data);
                     setQuizData(response.data);
                 })
                 .catch(error => console.error("Error fetching quizzes:", error));
@@ -49,7 +48,7 @@ function UserQuiz() {
         try {
             const response = await axiosurl.post(`/Questions/Result/${id}/${type}`, payload1);
             setScore(response.data);
-            alert(`Your ${type} Test Score: ${response.data}/100 ${JSON.stringify(payload1)}`);
+            alert(`Your ${type} Test Score: ${response.data}/100 `);
         } catch (error) {
             alert(`Error fetching score: ${error}`);
         }
@@ -73,7 +72,7 @@ function UserQuiz() {
 
         try {
             await axiosurl.post(`/Questions/User/SubmitQuiz`, payload);
-            alert(`Quiz submitted successfully!,${JSON.stringify(payload)}`);
+            alert(`Quiz submitted successfully!`);
             fetchScore(payload);
         } catch (error) {
             console.error("Error submitting quiz:", error);
