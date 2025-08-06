@@ -9,9 +9,11 @@ function ViewQuiz() {
        useEffect(() => {
     if (user?.id) {
         setId(user.id);
+        if(id!==0)
+            views(id);
        
     }
-}, [user]);
+}, [user,id]);
 const views=async(useri)=>{
     try{
   const response=  await axiosurl.get(`/Questions/viewQuiz/${useri}`)
@@ -20,11 +22,10 @@ const views=async(useri)=>{
     }
     catch(error){ alert("Error fetching quizzes:", error);}
 }
-    useEffect(() => {
-       views(id);
-    }, [user?.id]);
+    
 
     return (
+        
         <div className="ViewQuiz">
             <div className="header">
                 <h2>View Quizzes</h2>
