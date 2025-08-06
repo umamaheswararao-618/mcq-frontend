@@ -22,7 +22,7 @@ const views=async(useri)=>{
 }
     useEffect(() => {
        views(id);
-    }, [id]);
+    }, [user?.id]);
 
     return (
         <div className="ViewQuiz">
