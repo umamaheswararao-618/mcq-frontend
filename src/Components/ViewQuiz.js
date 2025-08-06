@@ -13,7 +13,7 @@ function ViewQuiz() {
     }
 }, [user]);
 const views=async(useri)=>{
-    await axiosurl.get(`/Questions/viewQuiz/${useri}`)
+  const response=  await axiosurl.get(`/Questions/viewQuiz/${useri}`)
             .then(response => {
                 setQuizData(response.data);
             })
