@@ -12,15 +12,15 @@ function ViewQuiz() {
        
     }
 }, [user]);
-const views=async()=>{
-    await axiosurl.get(`/Questions/viewQuiz/${id}`)
+const views=async(useri)=>{
+    await axiosurl.get(`/Questions/viewQuiz/${useri}`)
             .then(response => {
                 setQuizData(response.data);
             })
             .catch(error =>  alert("Error fetching quizzes:", error));
 }
     useEffect(() => {
-       views();
+       views(id);
     }, [id]);
 
     return (
