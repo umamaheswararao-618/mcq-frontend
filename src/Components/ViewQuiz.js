@@ -9,15 +9,18 @@ function ViewQuiz() {
        useEffect(() => {
     if (user?.id) {
         setId(user.id);
-        alert("User ID: " + user.id);
+       
     }
 }, [user]);
-    useEffect(() => {
-        axiosurl.get(`/Questions/viewQuiz/${id}`)
+const views=async()=>{
+    await axiosurl.get(`/Questions/viewQuiz/${id}`)
             .then(response => {
                 setQuizData(response.data);
             })
-            .catch(error => console.error("Error fetching quizzes:", error));
+            .catch(error =>  alert("Error fetching quizzes:", error));
+}
+    useEffect(() => {
+       views();
     }, [id]);
 
     return (
