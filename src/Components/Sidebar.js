@@ -17,7 +17,7 @@ function Sidebar() {
                         <Link to="/quiz" className="nav-link">Quiz</Link>
                     </li>
 
-                    {user?.roll === "admin" && (
+                    {user?.role === "admin" && (
                         <>
                             <li>
                                 <Link to="/create-question" className="nav-link">Create Question</Link>
