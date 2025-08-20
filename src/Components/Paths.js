@@ -24,7 +24,7 @@ function Paths()
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
 
-                {user?.roll==="admin"&&(
+                {user?.role==="admin"&&(
                     <>
                     <Route path="/create-question" element={
                     <ProtectRoute>
