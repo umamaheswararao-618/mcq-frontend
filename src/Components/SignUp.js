@@ -2,9 +2,10 @@ import React from "react";
 import './SignIn.css';
 import { useState } from "react";
 
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axiosurl from "../AxiosPath";
 function SignUp(){
+    const navigate = useNavigate();
     const [payload, setPayload] = useState({
         email: "",
         passWord: "",
@@ -53,6 +54,7 @@ function SignUp(){
                     .then(response => {
                         if (response.status === 200) {
                             alert(`✅ Sign Up successful ${response.data}`);
+                            navigate("/login");
                         }
                     })}
                     catch(error)
